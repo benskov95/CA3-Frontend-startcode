@@ -17,6 +17,7 @@ export default function App() {
       <Header
         isLoggedIn={isLoggedIn}
         loginMsg={isLoggedIn ? "Log out" : "Log in"}
+        setLoginStatus={setLoginStatus}
       />
     </div>
   );

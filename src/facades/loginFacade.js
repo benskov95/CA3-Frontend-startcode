@@ -1,4 +1,4 @@
-const URL = "http://localhost:3030";
+const URL = "http://localhost:8080/startcode_ca3_war_exploded";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
@@ -22,10 +22,10 @@ function loginFacade() {
     localStorage.removeItem("jwtToken");
   };
 
-  const login = (user, password) => {
+  const login = (user) => {
     const options = makeOptions("POST", true, {
-      username: user,
-      password: password,
+      username: user.username,
+      password: user.password,
     });
     return fetch(URL + "/api/login", options)
       .then(handleHttpErrors)

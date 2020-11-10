@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import loginFacade from "../facades/loginFacade";
 
 export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {

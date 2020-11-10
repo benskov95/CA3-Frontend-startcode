@@ -13,7 +13,7 @@ import {
 import { Login } from "./Login";
 import Home from "./Home";
 
-export default function Header({ isLoggedIn }) {
+export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
   return (
     <div>
       <ul className="header">
@@ -38,7 +38,7 @@ export default function Header({ isLoggedIn }) {
         )}
         <li>
           <NavLink activeClassName="selected" to="/login">
-            Login
+            {loginMsg}
           </NavLink>
         </li>
       </ul>
@@ -48,7 +48,11 @@ export default function Header({ isLoggedIn }) {
           <Home />
         </Route>
         <Route path="/Login">
-          <Login />
+          <Login
+            setLoginStatus={setLoginStatus}
+            isLoggedIn={isLoggedIn}
+            loginMsg={loginMsg}
+          />
         </Route>
       </Switch>
     </div>
