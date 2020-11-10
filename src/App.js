@@ -1,13 +1,23 @@
 import "./styles/Navbar.css";
-import Header from "./components/Header"
+import Header from "./components/Header";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let history = useHistory();
 
-function App() {
+  const setLoginStatus = (status) => {
+    setIsLoggedIn(status);
+    history.push("/");
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header
+        isLoggedIn={isLoggedIn}
+        loginMsg={isLoggedIn ? "Log out" : "Log in"}
+      />
     </div>
   );
 }
-
-export default App;

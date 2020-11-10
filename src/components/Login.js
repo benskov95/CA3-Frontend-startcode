@@ -1,66 +1,68 @@
-import React, { useState, useEffect } from "react"
-import facade from "../facades/apiFacade";
+import React, { useState, useEffect } from "react";
+import loginFacade from "../facades/loginFacade";
 
-export default function LogIn({ login }) {
-    const init = { username: "", password: "" };
-    const [loginCredentials, setLoginCredentials] = useState(init);
+export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
+  const [user, setUser] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
 
-    const performLogin = (evt) => {
-        evt.preventDefault();
-        login(loginCredentials.username, loginCredentials.password);
-    }
-    const onChange = (evt) => {
-        setLoginCredentials({ ...loginCredentials, [evt.target.id]: evt.target.value })
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginFacade
+      .login(user)
+      .then((res) => setLoginStatus(!isLoggedIn))
+      .catch((promise) => {
+        printError(promise, setError);
+      });
+  };
 
+  const handleChange = (e) => {
+    setError("");
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
+
+  const logout = () => {
+    setLoginStatus(false);
+    loginFacade.logout();
+  };
+
+  if (!isLoggedIn) {
     return (
-        <div>
-            <h2>Login</h2>
-            <form onChange={onChange} >
-                <input placeholder="User Name" id="username" />
-                <input placeholder="Password" id="password" />
-                <button onClick={performLogin}>Login</button>
-            </form>
-        </div>
-    )
-
-}
-function LoggedIn() {
-    const [dataFromServer, setDataFromServer] = useState("Loading...")
-
-    useEffect(() => {
-        facade.fetchData().then(data => setDataFromServer(data.msg));
-    }, [])
-
+      <div>
+        <h2>{loginMsg}</h2>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <input
+            id="username"
+            placeholder="Enter username"
+            onChange={handleChange}
+          />
+          <br />
+          <input
+            id="password"
+            placeholder="Enter password"
+            onChange={handleChange}
+          />
+          <br />
+          <br />
+          <input type="submit" value="Log in" />
+          <br />
+          <p style={{ color: "red" }}>{error}</p>
+        </form>
+      </div>
+    );
+  } else {
     return (
-        <div>
-            <h2>Data Received from server</h2>
-            <h3>{dataFromServer}</h3>
-        </div>
-    )
-}
+      <div>
+        <h2>{loginMsg}</h2>
+        <br />
+        <button onClick={logout}>Log out</button>
+      </div>
+    );
+  }
+};
 
-function App() {
-    const [loggedIn, setLoggedIn] = useState(false)
-
-    const logout = () => {
-        facade.logout()
-        setLoggedIn(false)
-    }
-
-    const login = (user, pass) => {
-        facade.login(user, pass)
-            .then(res => setLoggedIn(true));
-    }
-
-    return (
-        <div>
-            {!loggedIn ? (<LogIn login={login} />) :
-                (<div>
-                    <LoggedIn />
-                    <button onClick={logout}>Logout</button>
-                </div>)}
-        </div>
-    )
-
-}
+const printError = (promise, setError) => {
+  promise.fullError.then(function (status) {
+    setError(`${status.code} : ${status.message}`);
+  });
+};
