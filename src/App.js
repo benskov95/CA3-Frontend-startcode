@@ -1,9 +1,11 @@
-import "./App.css";
+import "./styles/Navbar.css";
+import Header from "./components/Header"
+
 
 function App() {
   return (
     <div className="App">
-      <h1>CA3 Frontend startcode</h1>
+      <Header />
     </div>
   );
 }

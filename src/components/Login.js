@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import facade from "../facades/apiFacade";
 
-function LogIn({ login }) {
+export default function LogIn({ login }) {
     const init = { username: "", password: "" };
     const [loginCredentials, setLoginCredentials] = useState(init);
 
@@ -64,4 +64,3 @@ function App() {
     )
 
 }
-export default Login;
