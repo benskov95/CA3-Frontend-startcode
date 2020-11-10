@@ -83,6 +83,6 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
 
 const printError = (promise, setError) => {
   promise.fullError.then(function (status) {
-    setError(`${status.code} : ${status.message}`);
+    setError(`${status.message}`);
   });
 };
