@@ -9,18 +9,10 @@ import {
 import { Login } from "./Login";
 import Home from "./Home";
 
-let user = "";
-let roles = "";
-
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
-  if (isLoggedIn) {
-    user = `Logged in as: ${localStorage.getItem("user")}`;
-    roles = `Roles: ${localStorage.getItem("roles")}`;
-  } else {
-    user = "";
-    roles = "";
-  }
+  let user = isLoggedIn ? `Logged in as: ${localStorage.getItem("user")}` : "";
+  let roles = isLoggedIn ? `Roles: ${localStorage.getItem("roles")}` : "";
 
   return (
     <div>
