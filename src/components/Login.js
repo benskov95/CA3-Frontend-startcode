@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 import loginFacade from "../facades/loginFacade";
+import { LOCAL_URL, REMOTE_URL } from "../utils/settings";
+
+export let URL = "";
 
 export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  
+  if (URL === "") {
+    URL = LOCAL_URL;
+  }
+
+  const handleChange = (e) => {
+    setError("");
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
+
+  const changeURL = (e) => {
+    URL = e.target.value;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,13 +27,12 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
       .login(user)
       .then((res) => setLoginStatus(!isLoggedIn))
       .catch((promise) => {
-        printError(promise, setError);
+        if (promise.fullError) {
+                printError(promise, setError);
+        } else {
+          setError("No response from API. Make sure it is running.");;;;
+        }
       });
-  };
-
-  const handleChange = (e) => {
-    setError("");
-    setUser({ ...user, [e.target.id]: e.target.value });
   };
 
   const logout = () => {
@@ -43,8 +58,13 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
             onChange={handleChange}
           />
           <br />
+        <select onChange={changeURL}>
+          <option value={LOCAL_URL}>Local API</option>
+          <option value={REMOTE_URL}>Remote API</option>
+        </select>
           <br />
-          <input type="submit" value="Log in" />
+          <br />
+          <input type="submit" value="Log in"/>
           <br />
           <p style={{ color: "red" }}>{error}</p>
         </form>
@@ -59,7 +79,7 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
       </div>
     );
   }
-};
+};;
 
 const printError = (promise, setError) => {
   promise.fullError.then(function (status) {

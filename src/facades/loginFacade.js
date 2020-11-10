@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/startcode_ca3_war_exploded";
+import { URL } from "../components/Login";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
