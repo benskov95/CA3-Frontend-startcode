@@ -7,8 +7,7 @@ export function handleHttpErrors(res) {
   return res.json();
 }
 
-function loginFacade() {
-
+function apiFacade() {
   const setToken = (token) => {
     localStorage.setItem("jwtToken", token);
   };
@@ -18,10 +17,10 @@ function loginFacade() {
   };
 
   const setUserAndRoles = (token) => {
-    let userFromToken = JSON.parse(atob(token.split('.')[1]));
+    let userFromToken = JSON.parse(atob(token.split(".")[1]));
     localStorage.setItem("user", userFromToken.sub);
     localStorage.setItem("roles", userFromToken.roles);
-  }
+  };
 
   const loggedIn = () => {
     const loggedIn = getToken() != null;
@@ -72,5 +71,5 @@ function loginFacade() {
     logout,
   };
 }
-const facade = loginFacade();
+const facade = apiFacade();
 export default facade;
