@@ -1,19 +1,27 @@
 import "../styles/App.css";
 import "../styles/Navbar.css";
-import React from "react";
+import React, { useEffect } from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   NavLink,
-  useParams,
-  useRouteMatch,
 } from "react-router-dom";
 import { Login } from "./Login";
 import Home from "./Home";
 
+let user = "";
+let roles = "";
+
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
+
+  if (isLoggedIn) {
+    user = `Logged in as: ${localStorage.getItem("user")}`;
+    roles = `Roles: ${localStorage.getItem("roles")}`;
+  } else {
+    user = "";
+    roles = "";
+  }
+
   return (
     <div>
       <ul className="header">
@@ -41,6 +49,8 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
             {loginMsg}
           </NavLink>
         </li>
+        <li style={{ float: "right", color: "white", marginRight: "20px" }}>
+          {user}<br />{roles}</li>
       </ul>
 
       <Switch>
