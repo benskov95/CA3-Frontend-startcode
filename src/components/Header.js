@@ -8,36 +8,49 @@ import {
   Link,
   NavLink,
   useParams,
-  useRouteMatch
+  useRouteMatch,
 } from "react-router-dom";
-import Login from "./Login";
+import { Login } from "./Login";
 import Home from "./Home";
 
-
-export default function Header() {
+export default function Header({ isLoggedIn }) {
   return (
-    <Router>
-      <div>
-        <ul className="header">
-          <li>
-            <NavLink exact activeClassName="selected" to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="selected" to="/login">Login</NavLink>
-          </li>
-        </ul>
+    <div>
+      <ul className="header">
+        <li>
+          <NavLink exact activeClassName="selected" to="/">
+            Home
+          </NavLink>
+        </li>
+        {isLoggedIn && (
+          <React.Fragment>
+            <li>
+              <NavLink activeClassName="active" to="/jokes">
+                Jokes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink activeClassName="active" to="/scrape">
+                Scrape
+              </NavLink>
+            </li>
+          </React.Fragment>
+        )}
+        <li>
+          <NavLink activeClassName="selected" to="/login">
+            Login
+          </NavLink>
+        </li>
+      </ul>
 
-        
-
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/Login">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/Login">
+          <Login />
+        </Route>
+      </Switch>
+    </div>
   );
 }
