@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import loginFacade from "../facades/loginFacade";
+import apiFacade from "../facades/apiFacade";
 import { LOCAL_URL, REMOTE_URL } from "../utils/settings";
 
 export let URL = "";
@@ -23,21 +23,21 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginFacade
+    apiFacade
       .login(user)
       .then((res) => setLoginStatus(!isLoggedIn))
       .catch((promise) => {
         if (promise.fullError) {
-                printError(promise, setError);
+          printError(promise, setError);
         } else {
-          setError("No response from API. Make sure it is running.");;;;
+          setError("No response from API. Make sure it is running.");
         }
       });
   };
 
   const logout = () => {
     setLoginStatus(false);
-    loginFacade.logout();
+    apiFacade.logout();
   };
 
   if (!isLoggedIn) {

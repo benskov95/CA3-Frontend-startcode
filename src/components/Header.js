@@ -1,6 +1,6 @@
 import "../styles/App.css";
 import "../styles/Navbar.css";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Switch,
   Route,
@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Login } from "./Login";
 import Home from "./Home";
+import Example from "./Example";
 
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
@@ -25,13 +26,8 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         {isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink activeClassName="active" to="/jokes">
-                Jokes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="active" to="/scrape">
-                Scrape
+              <NavLink activeClassName="active" to="/example">
+                Example
               </NavLink>
             </li>
           </React.Fragment>
@@ -42,12 +38,18 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
           </NavLink>
         </li>
         <li style={{ float: "right", color: "white", marginRight: "20px" }}>
-          {user}<br />{roles}</li>
+          {user}
+          <br />
+          {roles}
+        </li>
       </ul>
 
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/example">
+          <Example />
         </Route>
         <Route path="/Login">
           <Login

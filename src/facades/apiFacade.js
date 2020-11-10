@@ -1,6 +1,6 @@
 import { URL } from "../components/Login";
 
-function handleHttpErrors(res) {
+export function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
   }
