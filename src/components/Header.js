@@ -9,6 +9,7 @@ import {
 import { Login } from "./Login";
 import Home from "./Home";
 import Example from "./Example";
+import Admin from "./Admin";
 
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
@@ -32,6 +33,15 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
             </li>
           </React.Fragment>
         )}
+        {roles.includes("admin") && (
+          <React.Fragment>
+            <li>
+              <NavLink activeClassName="active" to="/admin">
+                Admin
+              </NavLink>
+            </li>
+          </React.Fragment>
+        )}
         <li>
           <NavLink activeClassName="selected" to="/login">
             {loginMsg}
@@ -50,6 +60,9 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         </Route>
         <Route path="/example">
           <Example />
+        </Route>
+        <Route path="/admin">
+          <Admin />
         </Route>
         <Route path="/Login">
           <Login
