@@ -40,20 +40,20 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
         <h2>{loginMsg}</h2>
         <br />
         <form onSubmit={handleSubmit}>
+        <label>Username</label><br />
           <input
             id="username"
-            placeholder="Enter username"
             onChange={handleChange}
           />
           <br />
+          <label>Password</label><br />
           <input
             id="password"
-            placeholder="Enter password"
             onChange={handleChange}
           />
           <br />
           <br />
-          <input type="submit" value="Log in" />
+          <input type="submit" value="Log in" className="btn btn-secondary"/>
           <br />
           <p style={{ color: "red" }}>{error}</p>
         </form>
@@ -64,7 +64,7 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
       <div>
         <h2>{loginMsg}</h2>
         <br />
-        <button onClick={logout}>Log out</button>
+        <button onClick={logout} className="btn btn-secondary">Log out</button>
       </div>
     );
   }

@@ -34,6 +34,7 @@ export default function Register() {
 
     return (
         <div>
+            <h2>Register</h2>
             <form onSubmit={registerUser}>
                 <br />
                 <label>Username</label><br />
@@ -42,7 +43,7 @@ export default function Register() {
                 <label>Password</label><br />
                 <input onChange={handleChange} value={user.password} name="password"></input>
                 <br /><br />
-                <input type="submit" value="Register"></input>
+                <input type="submit" value="Register" className="btn btn-secondary"></input>
                 <p style={{ color: "red" }}>{error}</p>
                 <p style={{color: "green"}}>{msg}</p>
             </form>

@@ -11,6 +11,7 @@ import Home from "./Home";
 import Example from "../components/Example";
 import Admin from "./Admin";
 import Register from "./Register";
+import NoMatch from "./NoMatch"
 
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
@@ -83,6 +84,9 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route>
+         <NoMatch />
         </Route>
       </Switch>
     </div>

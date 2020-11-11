@@ -11,7 +11,7 @@ export default function Example() {
     <div>
       <h1>Example</h1>
       <p>Click the button to get some random data from various APIs</p>
-      <button onClick={handleClick}>Click me</button>
+      <button onClick={handleClick} className="btn btn-secondary">Click me</button>
       <br />
       <h3>{typeof example.quote !== "undefined" ? "Yes Or No API" : ""}</h3>
       <p>{example.answer}</p>
