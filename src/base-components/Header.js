@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
   NavLink,
+  Redirect,
 } from "react-router-dom";
 import { Login } from "./Login";
 import Home from "./Home";
@@ -66,6 +67,9 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
       </ul>
 
       <Switch>
+        <Route path="/ca3-startcode">
+          <Redirect to="/" />
+        </Route>
         <Route exact path="/">
           <Home />
         </Route>
