@@ -24,6 +24,6 @@ You will find the following folders in the project:
 To get started with your own project, make sure to do the following:
 
 - Change the URLs in the settings.js file in the utils folder to match your own local and remote APIs.
-- Change the deploy.sh file to use your own server URL and folder (variable named DIRECTORY) to deploy every build to.
+- Change the deploy.sh file to use your own server URL and folder (variable named DIRECTORY) to deploy every build with.
 
 Link to backend startcode: https://github.com/benskov95/CA3-Backend-startcode
