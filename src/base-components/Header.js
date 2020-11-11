@@ -67,9 +67,6 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
       </ul>
 
       <Switch>
-        <Route path="/ca3-startcode">
-          <Redirect to="/" />
-        </Route>
         <Route exact path="/">
           <Home />
         </Route>
@@ -91,6 +88,10 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         </Route>
         <Route>
          <NoMatch />
+        </Route>
+      {/* for deployment */}
+        <Route path="/ca3-startcode">
+          <Redirect to="/" />
         </Route>
       </Switch>
     </div>
