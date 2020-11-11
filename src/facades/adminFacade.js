@@ -7,7 +7,14 @@ const adminFacade = () => {
       handleHttpErrors
     );
   };
-  return { getUsers };
+
+  const deleteUser = (userName) => {
+    return fetch(
+      URL + `/api/users/${userName}`,
+      apiFacade.makeOptions("DELETE", true)
+    ).then(handleHttpErrors);
+  };
+  return { getUsers, deleteUser };
 };
 
 const facade = adminFacade();
