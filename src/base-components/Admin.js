@@ -1,4 +1,4 @@
-import adminFacade from "../facades/adminFacade";
+import adminFacade from "../base-facades/adminFacade";
 import { useEffect, useState } from "react";
 import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.css";

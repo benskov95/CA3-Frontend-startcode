@@ -1,5 +1,5 @@
 import "./styles/Navbar.css";
-import Header from "./components/Header";
+import Header from "./base-components/Header";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 

@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { Login } from "./Login";
 import Home from "./Home";
-import Example from "./Example";
+import Example from "../components/Example";
 import Admin from "./Admin";
 import Register from "./Register";
 
