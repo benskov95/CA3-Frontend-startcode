@@ -46,6 +46,17 @@ function apiFacade() {
       });
   };
 
+
+  const register = (user) => {
+    URL = "http://localhost:8080/startcode-ca3"
+    const options = makeOptions("POST", false, {
+      username: user.username,
+      password: user.password,
+    });
+    return fetch(URL + "/api/users", options)
+      .then(handleHttpErrors)
+  }
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -69,6 +80,7 @@ function apiFacade() {
     loggedIn,
     login,
     logout,
+    register
   };
 }
 const facade = apiFacade();

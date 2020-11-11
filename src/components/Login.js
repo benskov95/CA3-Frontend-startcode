@@ -7,7 +7,7 @@ export let URL = "";
 export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
-  
+
   if (URL === "") {
     URL = LOCAL_URL;
   }
@@ -58,13 +58,13 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
             onChange={handleChange}
           />
           <br />
-        <select onChange={changeURL}>
-          <option value={LOCAL_URL}>Local API</option>
-          <option value={REMOTE_URL}>Remote API</option>
-        </select>
+          <select onChange={changeURL}>
+            <option value={LOCAL_URL}>Local API</option>
+            <option value={REMOTE_URL}>Remote API</option>
+          </select>
           <br />
           <br />
-          <input type="submit" value="Log in"/>
+          <input type="submit" value="Log in" />
           <br />
           <p style={{ color: "red" }}>{error}</p>
         </form>

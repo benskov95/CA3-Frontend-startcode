@@ -10,6 +10,7 @@ import { Login } from "./Login";
 import Home from "./Home";
 import Example from "./Example";
 import Admin from "./Admin";
+import Register from "./Register";
 
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
@@ -47,6 +48,15 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
             {loginMsg}
           </NavLink>
         </li>
+        {!isLoggedIn && (
+          <React.Fragment>
+            <li>
+              <NavLink activeClassName="active" to="/register">
+                Register
+              </NavLink>
+            </li>
+          </React.Fragment>
+        )}
         <li style={{ float: "right", color: "white", marginRight: "20px" }}>
           {user}
           <br />
@@ -64,12 +74,15 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         <Route path="/admin">
           <Admin />
         </Route>
-        <Route path="/Login">
+        <Route path="/login">
           <Login
             setLoginStatus={setLoginStatus}
             isLoggedIn={isLoggedIn}
             loginMsg={loginMsg}
           />
+        </Route>
+        <Route path="/register">
+          <Register />
         </Route>
       </Switch>
     </div>
