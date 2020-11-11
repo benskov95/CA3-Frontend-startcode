@@ -48,7 +48,6 @@ function apiFacade() {
 
 
   const register = (user) => {
-    URL = "http://localhost:8080/startcode-ca3"
     const options = makeOptions("POST", false, {
       username: user.username,
       password: user.password,

@@ -11,16 +11,28 @@ export default function Admin() {
     adminFacade.getUsers().then((users) => setAllUsers([...users]));
   }, [msg]);
 
+
+  allUsers.forEach(user => {
+    if (user.username === localStorage.getItem("user")) {
+      let excludedUser = [...allUsers];
+      let index = excludedUser.indexOf(user);
+      excludedUser.splice(index, 1);
+      setAllUsers([...excludedUser]);
+    }
+  });
+
   const deleteUser = (e) => {
     adminFacade.deleteUser(e.target.value).then((res) => setMsg(res.userName));
   };
 
   return (
     <div>
-      <h1>Hva så ADMIN! SKER DER G</h1>
+      <h1>Hello Admin</h1>
       <br />
       <p>{msg !== "" ? `${msg} has been deleted` : ""} </p>
       <br />
+      <h3>List of registered users</h3>
+      <p> (currently logged-in user is excluded)</p>
       <div className="container">
         <table className="table table-striped">
           <thead>
@@ -34,11 +46,11 @@ export default function Admin() {
             {allUsers.map((user) => {
               let roles = user.roles.join(", ");
               return (
-                <tr key={user.userName}>
-                  <td>{user.userName}</td>
+                <tr key={user.username}>
+                  <td>{user.username}</td>
                   <td>{roles}</td>
                   <td>
-                    <button onClick={deleteUser} value={user.userName}>
+                    <button className="btn btn-secondary" onClick={deleteUser} value={user.username}>
                       Delete
                     </button>
                   </td>

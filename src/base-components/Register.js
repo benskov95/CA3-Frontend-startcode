@@ -44,6 +44,7 @@ export default function Register() {
                 <input onChange={handleChange} value={user.password} name="password"></input>
                 <br /><br />
                 <input type="submit" value="Register" className="btn btn-secondary"></input>
+                <br /><br />
                 <p style={{ color: "red" }}>{error}</p>
                 <p style={{color: "green"}}>{msg}</p>
             </form>
