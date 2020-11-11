@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import apiFacade from "../facades/apiFacade";
+import {URL} from "./Home";
 
 export default function Register() {
     const [user, setUser] = useState({ username: "", password: "" });
@@ -11,8 +12,10 @@ export default function Register() {
     };
 
     const registerUser = e => {
-        console.log(user.username)
         e.preventDefault();
+        if (URL === "") {
+            setError("Remember to select an API on the Home page.");
+        } else {
         if (user.username !== "" || user.password !== "") {
             apiFacade.register(user).catch(promise => {
                 promise.fullError.then((error) => {
@@ -20,9 +23,9 @@ export default function Register() {
                 })
             })
         } else {
-            setError("All fields must be filled out")
+            setError("All fields must be filled out.")
         }
-    };
+    }};
 
     return (
         <div>

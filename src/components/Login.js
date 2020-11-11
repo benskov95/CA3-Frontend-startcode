@@ -1,29 +1,22 @@
 import React, { useState } from "react";
 import apiFacade from "../facades/apiFacade";
-import { LOCAL_URL, REMOTE_URL } from "../utils/settings";
-
-export let URL = "";
+import { URL } from "./Home";
 
 export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
-
-  if (URL === "") {
-    URL = LOCAL_URL;
-  }
 
   const handleChange = (e) => {
     setError("");
     setUser({ ...user, [e.target.id]: e.target.value });
   };
 
-  const changeURL = (e) => {
-    URL = e.target.value;
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    apiFacade
+    if (URL === "") {
+      setError("Remember to select an API on the Home page.");
+    } else {
+      apiFacade
       .login(user)
       .then((res) => setLoginStatus(!isLoggedIn))
       .catch((promise) => {
@@ -33,6 +26,7 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
           setError("No response from API. Make sure it is running.");
         }
       });
+    }
   };
 
   const logout = () => {
@@ -57,11 +51,6 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
             placeholder="Enter password"
             onChange={handleChange}
           />
-          <br />
-          <select onChange={changeURL}>
-            <option value={LOCAL_URL}>Local API</option>
-            <option value={REMOTE_URL}>Remote API</option>
-          </select>
           <br />
           <br />
           <input type="submit" value="Log in" />
