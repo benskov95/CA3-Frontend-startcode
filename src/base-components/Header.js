@@ -13,6 +13,7 @@ import Example from "../components/Example";
 import Admin from "./Admin";
 import Register from "./Register";
 import NoMatch from "./NoMatch"
+import PrivateRoute from "./PrivateRoute"
 
 export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
 
@@ -73,13 +74,9 @@ export default function Header({ isLoggedIn, setLoginStatus, loginMsg }) {
         </Route>
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route path="/example">
-          <Example />
-        </Route>
-        <Route path="/admin">
-          <Admin />
-        </Route>
+          </Route>
+        <PrivateRoute path="/example" isLoggedIn={isLoggedIn} component={Example} />
+        <PrivateRoute path="/admin" isLoggedIn={isLoggedIn} component={Admin} />
         <Route path="/login">
           <Login
             setLoginStatus={setLoginStatus}
