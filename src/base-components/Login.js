@@ -49,6 +49,7 @@ export const Login = ({ isLoggedIn, loginMsg, setLoginStatus }) => {
           <label>Password</label><br />
           <input
             id="password"
+            type="password"
             onChange={handleChange}
           />
           <br />

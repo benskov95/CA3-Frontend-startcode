@@ -41,7 +41,12 @@ export default function Register() {
                 <input onChange={handleChange} value={user.username} name="username"></input>
                 <br />
                 <label>Password</label><br />
-                <input onChange={handleChange} value={user.password} name="password"></input>
+                <input 
+                onChange={handleChange} 
+                type="password"
+                value={user.password} 
+                name="password">
+                </input>
                 <br /><br />
                 <input type="submit" value="Register" className="btn btn-secondary"></input>
                 <br /><br />
